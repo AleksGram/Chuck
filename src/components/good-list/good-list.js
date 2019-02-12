@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GoodListItem from '../good-list-item';
+import Loader from '../loader'
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
@@ -10,19 +11,22 @@ import './good-list.css';
 class GoodList extends Component {
 
     componentDidMount () {
-        const { storeService } = this.props;
-        const data = storeService.getItems();
-        console.log(data);
-        this.props.goodLoaded(data)
+        const { storeService, goodLoaded  } = this.props;
+        storeService.getItems()
+            .then((data) =>  goodLoaded(data));
     }
 
     render () {
-        const { goods } = this.props;
+        const { goods, loading } = this.props;
+
+        if (loading) {
+            return <Loader/>
+        }
         return (
-            <ul>
+            <ul className="list-group">
                 {goods.map((itemData) => {
                     return (
-                       <li key={itemData.id}>
+                       <li className='list-group-item list-group-item-primary' key={itemData.id}>
                          <GoodListItem itemData={itemData}/>
                        </li>     
                     )
@@ -32,8 +36,8 @@ class GoodList extends Component {
     }
 }
 
-const mapStateToProps = ({goods}) => {
-    return { goods }
+const mapStateToProps = ({goods, loading}) => {
+    return { goods, loading }
 }
 
 // const mapDispatchToProps = (dispatch) => {
