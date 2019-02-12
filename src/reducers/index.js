@@ -1,6 +1,7 @@
 
 const initialState = {
-    goods: []
+    goods:  []
+       
 }
 
 const reducer = (state = initialState, action) => {
