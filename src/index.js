@@ -7,6 +7,7 @@ import App from './components/app/app';
 import ErrorBoundry from './components/error-boundry';
 import StoreService from './services/store-service';
 import { StoreServiceProvider } from './components/store-service-context'
+import Header from './components/header';
 
 import store from './store';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
    <Provider store={store}>
     <ErrorBoundry>
         <StoreServiceProvider value={storeService}>
+            <Header/>
             <Router>
                 <App/>
             </Router>
