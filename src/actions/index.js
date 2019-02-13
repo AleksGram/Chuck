@@ -6,6 +6,22 @@ const goodLoaded = (newGoods) => {
     }
 }
 
+const randomJoke = (joke) => {
+    return {
+        type: 'RND_JOKE',
+        payload: joke
+    }
+}
+
+const jokeCategories = (categories) => {
+    return {
+        type: 'JOKE_CATEGORY',
+        payload: categories
+    }
+}
+
 export  {
-    goodLoaded
+    goodLoaded,
+    randomJoke,
+    jokeCategories
 };

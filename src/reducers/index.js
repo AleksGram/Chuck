@@ -1,19 +1,28 @@
 
 const initialState = {
-    goods:  [],
-    loading: true
+    loading: true,
+    currentJoke: '',
+    categories: []
 }
 
 const reducer = (state = initialState, action) => {
+    debugger
     switch (action.type) {
-        case 'GOODS_LOADED':
-            return {
-                goods: action.payload,
-                loading: false
-            }
+        case 'RND_JOKE':
+        return {
+            ...state,
+            currentJoke: action.payload,
+            loading: false
+        }
+        case 'JOKE_CATEGORY':
+        return {
+            ...state,
+            categories: action.payload,
+            loading: false
+        }
         default:
             return state;
     }
 }
 
-export default reducer;
+export default reducer; 

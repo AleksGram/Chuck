@@ -12,7 +12,7 @@ class GoodList extends Component {
 
     componentDidMount () {
         const { storeService, goodLoaded  } = this.props;
-        storeService.getItems()
+        storeService.getRandomJoke()
             .then((data) =>  goodLoaded(data));
     }
 

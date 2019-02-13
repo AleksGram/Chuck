@@ -5,18 +5,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './components/app/app';
 import ErrorBoundry from './components/error-boundry';
-import StoreService from './services/store-service';
+// import StoreService from './services/store-service';
+import ChackService from './services/store-service';
 import { StoreServiceProvider } from './components/store-service-context'
 import Header from './components/header';
 
 import store from './store';
 
-const storeService = new StoreService ();
+// const storeService = new StoreService ();
+const chackService = new ChackService()
 
 ReactDOM.render(
    <Provider store={store}>
     <ErrorBoundry>
-        <StoreServiceProvider value={storeService}>
+        <StoreServiceProvider value={chackService}>
             <Header/>
             <Router>
                 <App/>
