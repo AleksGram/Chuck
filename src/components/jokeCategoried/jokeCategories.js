@@ -5,6 +5,7 @@ import * as actions from '../../actions';
 import { compose } from 'redux';
 import { withStoreService } from '../hoc'
 import './jokeCategories.css';
+import JokeItem from '../JokeItem';
 
 class JokeCategories extends Component {
 
@@ -24,8 +25,12 @@ class JokeCategories extends Component {
         return (
             <ul>
                 {
-                    categories.map((cat) => {
-                        return <li>{cat}</li>
+                    categories.map((cat, id) => {
+                        return (
+                            <li key={id}>
+                                <JokeItem  joke={cat}></JokeItem>
+                            </li>
+                        )
                     })
                 }
             </ul>

@@ -11,32 +11,36 @@ import './jokeHolder.css';
 class JokeHolder extends Component {
 
     componentDidMount () {
-        const {storeService, randomJoke } = this.props;
+        const {storeService, randomJoke, categoryJoke, currentJoke } = this.props;
         const currentjoke = storeService.getRandomJoke()
                 .then((data) => randomJoke(data.value))
     }
 
+    renderJoke (categoryJoke, currentJoke) {
+        return (categoryJoke) ? categoryJoke : currentJoke;
+    }
+
     render () {
-        const {currentJoke, loading} = this.props;
-        
+        const {currentJoke, categoryJoke, loading} = this.props;
         if (loading) {
             return <Loader/>
         }
 
         return (
             <div>
-                <span>{currentJoke}</span>
+                <span>{this.renderJoke(categoryJoke, currentJoke)}</span>
                 <JokeCategories/>
             </div>
         ) 
     }
 }
  
-const mapStateToProps = ({currentJoke, goods, loading}) => {
+const mapStateToProps = ({currentJoke, goods, loading, categoryJoke}) => {
     return {
         currentJoke,
         goods,
-        loading 
+        loading,
+        categoryJoke 
     }
 }
 

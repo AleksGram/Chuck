@@ -20,8 +20,16 @@ const jokeCategories = (categories) => {
     }
 }
 
+const rndCategoryJoke = (joke) => {
+    return {
+        type: 'RND_CAT_JOKE',
+        payload: joke
+    }
+}
+
 export  {
     goodLoaded,
     randomJoke,
-    jokeCategories
+    jokeCategories,
+    rndCategoryJoke
 };

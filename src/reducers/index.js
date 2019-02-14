@@ -2,11 +2,11 @@
 const initialState = {
     loading: true,
     currentJoke: '',
-    categories: []
+    categories: [],
+    categoryJoke: ''
 }
 
 const reducer = (state = initialState, action) => {
-    debugger
     switch (action.type) {
         case 'RND_JOKE':
         return {
@@ -18,6 +18,12 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             categories: action.payload,
+            loading: false
+        }
+        case 'RND_CAT_JOKE':
+        return {
+            ...state,
+            categoryJoke: action.payload,
             loading: false
         }
         default:

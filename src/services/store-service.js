@@ -40,4 +40,14 @@ export default class ChackService {
         return await res.json();
     }
 
+    async getCategoryRndJoke (category) {
+        const path = `random?categoty=${category}`;
+        const res =  await fetch(`${this._urlBase}${path}`)
+
+        if (!res.ok) {
+            throw new Error (`Could not fetch `, `Getting ${res.status}`)
+        }
+        return await res.json();
+    }
+
 };
