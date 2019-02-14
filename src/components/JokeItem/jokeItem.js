@@ -9,17 +9,18 @@ import * as actions from '../../actions';
 
 
 const JokeItem = (props) => {
-    const { joke, storeService, rndCategoryJoke } = props;
+    const { category, storeService, rndCategoryJoke } = props;
 
     const categoryClick = (e) => {
-        const res = storeService.getCategoryRndJoke(joke)
-                .then((data)=>rndCategoryJoke(data.value) )
+        // eslint-disable-next-line
+        const res = storeService.getCategoryRndJoke(category)
+                .then((data)=>rndCategoryJoke(data, category) )
     }
     return (
         <span
         onClick={categoryClick}
         >
-        {joke}</span>
+        {category}</span>
     )
 }
 

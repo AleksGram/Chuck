@@ -3,7 +3,8 @@ const initialState = {
     loading: true,
     currentJoke: '',
     categories: [],
-    categoryJoke: ''
+    categoryJoke: '',
+    activeCategory: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,7 +25,8 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             categoryJoke: action.payload,
-            loading: false
+            loading: false,
+            activeCategory: action.activeCategory
         }
         default:
             return state;

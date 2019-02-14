@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Loader from '../loader'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -11,36 +11,65 @@ import './jokeHolder.css';
 class JokeHolder extends Component {
 
     componentDidMount () {
+        // eslint-disable-next-line
         const {storeService, randomJoke, categoryJoke, currentJoke } = this.props;
+        // eslint-disable-next-line
         const currentjoke = storeService.getRandomJoke()
                 .then((data) => randomJoke(data.value))
     }
 
-    renderJoke (categoryJoke, currentJoke) {
-        return (categoryJoke) ? categoryJoke : currentJoke;
+    renderJoke () {
+        const {categoryJoke, currentJoke, activeCategory} = this.props
+        return (categoryJoke) 
+        ? (
+            <Fragment>
+                <div>{categoryJoke.value}</div>
+                <span>{`From categoty: ${activeCategory}`}</span> 
+            </Fragment>
+        )
+        : currentJoke;
+    }
+
+    randomBtnClick () {
+        const {activeCategory, storeService, rndCategoryJoke, randomJoke} = this.props;
+        if (activeCategory) {
+            // eslint-disable-next-line
+            const jokeData = storeService.getCategoryRndJoke(activeCategory)
+                    .then((data)=>rndCategoryJoke(data, activeCategory));
+        } else {
+            // eslint-disable-next-line
+            const currentjoke = storeService.getRandomJoke()
+            .then((data) => randomJoke(data.value))
+        }
     }
 
     render () {
-        const {currentJoke, categoryJoke, loading} = this.props;
+        // eslint-disable-next-line
+        const {currentJoke, categoryJoke, loading, activeCategory} = this.props;
         if (loading) {
             return <Loader/>
         }
 
         return (
             <div>
-                <span>{this.renderJoke(categoryJoke, currentJoke)}</span>
+                <span>{this.renderJoke()}</span>
                 <JokeCategories/>
+                <button
+                 type="button" className="btn btn-dark"
+                 onClick={()=>{this.randomBtnClick()}}
+                 >Random</button>
             </div>
         ) 
     }
 }
  
-const mapStateToProps = ({currentJoke, goods, loading, categoryJoke}) => {
+const mapStateToProps = ({currentJoke, goods, loading, categoryJoke, activeCategory}) => {
     return {
         currentJoke,
         goods,
         loading,
-        categoryJoke 
+        categoryJoke,
+        activeCategory 
     }
 }
 

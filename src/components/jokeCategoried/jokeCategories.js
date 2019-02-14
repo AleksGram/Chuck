@@ -11,12 +11,14 @@ class JokeCategories extends Component {
 
     componentDidMount () {
         const {storeService, jokeCategories } = this.props;
+        // eslint-disable-next-line
         const categories = storeService.getJokeCategories()
                 .then((data) => jokeCategories(data))
     }
 
     render () {
-        const {categories, loading} = this.props;
+        // eslint-disable-next-line
+        const {categories, loading, activeCategory} = this.props;
         
         if (loading) {
             return <Loader/>
@@ -28,7 +30,7 @@ class JokeCategories extends Component {
                     categories.map((cat, id) => {
                         return (
                             <li key={id}>
-                                <JokeItem  joke={cat}></JokeItem>
+                                <JokeItem  category={cat}></JokeItem>
                             </li>
                         )
                     })
@@ -38,10 +40,11 @@ class JokeCategories extends Component {
     }
 }
  
-const mapStateToProps = ({categories, loading}) => {
+const mapStateToProps = ({categories, loading, activeCategory}) => {
     return {
         categories,
-        loading 
+        loading,
+        activeCategory 
     }
 }
 

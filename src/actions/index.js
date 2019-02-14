@@ -20,10 +20,11 @@ const jokeCategories = (categories) => {
     }
 }
 
-const rndCategoryJoke = (joke) => {
+const rndCategoryJoke = (joke, category) => {
     return {
         type: 'RND_CAT_JOKE',
-        payload: joke
+        payload: joke,
+        activeCategory: category
     }
 }
 
