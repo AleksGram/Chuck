@@ -46,7 +46,11 @@ class JokeHolder extends Component {
 
         return (
             <div >
-                <p className="current-joke">{this.renderJoke()}</p>
+                <div className='jokeContainer'>
+                    <p className="current-joke">
+                        {this.renderJoke()}
+                    </p>
+                </div>
                 <JokeCategories/>
                 <div
                  className="btn btn-warning random"

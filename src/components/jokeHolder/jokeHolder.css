@@ -1,10 +1,15 @@
+
+.jokeContainer {
+    min-height: 145px;
+}
+
 p.current-joke {
-    position: absolute;
-    top: 16em;
-    left: 37em;
+    position: relative;
+    top: 6em;
+    left: 49%;
     font-size: 1.5em;
-    width: 20%;
-    max-height: 19%;
+    width: 19%;
+    max-height: 6em;
     text-align: center;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -30,8 +35,8 @@ border-radius: 4px;
 .random {
     border-radius: .2em;
     position: relative;
-    left: 65em;
-    bottom: 3em;
+    left: 54%;
+    bottom: 8em;
     background-color: inherit;
     border-color: #f15a24;
     color: #f15a24;

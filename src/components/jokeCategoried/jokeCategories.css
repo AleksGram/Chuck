@@ -1,9 +1,12 @@
 
 .categoryContainer {
+    position: relative;
+    top: -5em; 
     border: .05em solid;
     width: 11%;
-    height: 25em;
-    margin: 4em 0 0 40em;
+    max-width: 12.5em;
+    height: 22em;
+    margin: 1% 0 0 35%;
     border-radius: 1.5em;
     color: #e98227;
     border-color: black;
@@ -12,7 +15,9 @@
 ul.list-category {
     list-style-type: none;
     overflow: scroll;
-    height: 22em;
+    height: 85%;
+    padding-left: 0;
+    text-align: center;
 }
 
 ul.list-category::-webkit-scrollbar {
