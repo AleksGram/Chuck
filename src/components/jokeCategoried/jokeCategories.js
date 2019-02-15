@@ -17,7 +17,7 @@ class JokeCategories extends Component {
     }
 
     scroll = () => {
-        const {jokeCategories, categories, activeCategory } = this.props;
+        const { activeCategory } = this.props;
        
         let last = null;
         if (activeCategory === '') {
