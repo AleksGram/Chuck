@@ -19,15 +19,9 @@ class JokeHolder extends Component {
     }
 
     renderJoke () {
-        const {categoryJoke, currentJoke, activeCategory} = this.props
+        const {categoryJoke, currentJoke} = this.props
         return (categoryJoke) 
-        ? (
-            <Fragment>
-                <div>{categoryJoke.value}</div>
-                <span>{`From categoty: ${activeCategory}`}</span> 
-            </Fragment>
-        )
-        : currentJoke;
+        ? (categoryJoke.value) : currentJoke;
     }
 
     randomBtnClick () {
@@ -45,17 +39,17 @@ class JokeHolder extends Component {
 
     render () {
         // eslint-disable-next-line
-        const {currentJoke, categoryJoke, loading, activeCategory} = this.props;
+        const {loading} = this.props;
         if (loading) {
             return <Loader/>
         }
 
         return (
-            <div>
-                <span>{this.renderJoke()}</span>
+            <div >
+                <p className="current-joke">{this.renderJoke()}</p>
                 <JokeCategories/>
                 <button
-                 type="button" className="btn btn-dark"
+                 type="button" className="btn btn-warning random"
                  onClick={()=>{this.randomBtnClick()}}
                  >Random</button>
             </div>

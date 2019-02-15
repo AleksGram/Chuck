@@ -25,7 +25,7 @@ class JokeCategories extends Component {
         }
 
         return (
-            <ul>
+            <ul className="list-category">
                 {
                     categories.map((cat, id) => {
                         return (
