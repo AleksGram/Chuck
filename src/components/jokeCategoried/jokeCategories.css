@@ -1,14 +1,29 @@
-ul.list-category {
+
+.categoryContainer {
     border: .05em solid;
     width: 11%;
-    height: 24em;
+    height: 25em;
     margin: 4em 0 0 40em;
     border-radius: 1.5em;
     color: #e98227;
     border-color: black;
-    list-style-type: none;
-    overflow: hidden;
 }
+
+ul.list-category {
+    list-style-type: none;
+    overflow: scroll;
+    height: 22em;
+}
+
+ul.list-category::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* iOS style*/
+  ul.list-category::-webkit-scrollbar-thumb{
+    background-color: inherit;
+    border-radius: 4px;
+  }
+
 
 li.category {
     font-size: 2em;

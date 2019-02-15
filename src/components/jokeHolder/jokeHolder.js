@@ -48,10 +48,10 @@ class JokeHolder extends Component {
             <div >
                 <p className="current-joke">{this.renderJoke()}</p>
                 <JokeCategories/>
-                <button
-                 type="button" className="btn btn-warning random"
+                <div
+                 className="btn btn-warning random"
                  onClick={()=>{this.randomBtnClick()}}
-                 >Random</button>
+                 >Random joke</div>
             </div>
         ) 
     }
