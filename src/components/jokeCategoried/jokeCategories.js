@@ -18,7 +18,7 @@ class JokeCategories extends Component {
 
     scroll = () => {
         const {jokeCategories, categories, activeCategory } = this.props;
-        debugger
+       
         let last = null;
         if (activeCategory === '') {
             last = document.querySelector('li.category:nth-child(7)');
