@@ -29,7 +29,7 @@ class JokeCategories extends Component {
                 {
                     categories.map((cat, id) => {
                         return (
-                            <li key={id}>
+                            <li key={id} className={(activeCategory === cat) ? 'category active' : 'category' }>
                                 <JokeItem  category={cat}></JokeItem>
                             </li>
                         )
