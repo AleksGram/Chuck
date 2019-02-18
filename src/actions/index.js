@@ -28,9 +28,16 @@ const rndCategoryJoke = (joke, category) => {
     }
 }
 
+const jokeRequest = () => {
+    return {
+        type: 'REQUEST_JOKE'
+    }
+}
+
 export  {
     goodLoaded,
     randomJoke,
     jokeCategories,
-    rndCategoryJoke
+    rndCategoryJoke,
+    jokeRequest
 };

@@ -28,6 +28,11 @@ const reducer = (state = initialState, action) => {
             loading: false,
             activeCategory: action.activeCategory
         }
+        case 'REQUEST_JOKE':
+        return {
+            ...state,
+            loading: true
+        }
         default:
             return state;
     }

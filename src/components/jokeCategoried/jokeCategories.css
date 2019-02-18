@@ -18,6 +18,7 @@ ul.list-category {
     height: 85%;
     padding-left: 0;
     text-align: center;
+    position: relative;
 }
 
 ul.list-category::-webkit-scrollbar {

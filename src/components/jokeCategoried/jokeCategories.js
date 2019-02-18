@@ -22,9 +22,10 @@ class JokeCategories extends Component {
         let last = null;
         if (activeCategory === '') {
             last = document.querySelector('li.category:nth-child(7)');
-            // if(last.offsetTop < 48) {
-            //     last = last.nextElementSibling;
-            // }
+        
+            if(last.getBoundingClientRect().top < 328) {
+                last = last.nextElementSibling;
+            }
         } else {
             last = document.querySelector(`li.category.${activeCategory}`);
         }

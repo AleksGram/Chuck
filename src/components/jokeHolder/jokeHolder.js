@@ -12,7 +12,8 @@ class JokeHolder extends Component {
 
     componentDidMount () {
         // eslint-disable-next-line
-        const {storeService, randomJoke, categoryJoke, currentJoke } = this.props;
+        const {storeService, randomJoke, categoryJoke, currentJoke, jokeRequest } = this.props;
+        jokeRequest();
         // eslint-disable-next-line
         const currentjoke = storeService.getRandomJoke()
                 .then((data) => randomJoke(data.value))
@@ -25,12 +26,14 @@ class JokeHolder extends Component {
     }
 
     randomBtnClick () {
-        const {activeCategory, storeService, rndCategoryJoke, randomJoke} = this.props;
+        const {activeCategory, storeService, rndCategoryJoke, randomJoke, jokeRequest} = this.props;
         if (activeCategory) {
+            jokeRequest();
             // eslint-disable-next-line
             const jokeData = storeService.getCategoryRndJoke(activeCategory)
                     .then((data)=>rndCategoryJoke(data, activeCategory));
         } else {
+            jokeRequest();
             // eslint-disable-next-line
             const currentjoke = storeService.getRandomJoke()
             .then((data) => randomJoke(data.value))
@@ -39,9 +42,16 @@ class JokeHolder extends Component {
 
     render () {
         // eslint-disable-next-line
+       
         const {loading} = this.props;
         if (loading) {
-            return <Loader/>
+            return (
+                <div className='jokeContainer'>
+                <p className="current-joke">
+                     <Loader/>
+                </p>
+            </div>
+            ) 
         }
 
         return (

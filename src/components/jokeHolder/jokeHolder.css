@@ -20,7 +20,7 @@ p.current-joke::-webkit-scrollbar {
 }
 /* iOS style*/
 p.current-joke::-webkit-scrollbar-thumb{
-background-color: #cd9b66;
+background-color: #eedcc9;
 border-radius: 4px;
 }
 
