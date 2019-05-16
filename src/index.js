@@ -9,16 +9,18 @@ import ErrorBoundry from './components/error-boundry';
 import ChackService from './services/store-service';
 import { StoreServiceProvider } from './components/store-service-context'
 import Header from './components/header';
+import DataProvider from './services/dataProvider';
 
 import store from './store';
 
 // const storeService = new StoreService ();
-const chackService = new ChackService()
+const chackService = new ChackService();
+const dataProvider = new DataProvider('wss://echo.websocket.org')
 
 ReactDOM.render(
    <Provider store={store}>
     <ErrorBoundry>
-        <StoreServiceProvider value={chackService}>
+        <StoreServiceProvider value={chackService} >
             <Header/>
             <Router>
                 <App/>
@@ -30,3 +32,4 @@ ReactDOM.render(
 );
 
 
+window.dataProvider = dataProvider;

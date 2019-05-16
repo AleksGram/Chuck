@@ -10,8 +10,11 @@ import JokeItem from '../JokeItem';
 class JokeCategories extends Component {
 
     componentDidMount() {
-        const { storeService, jokeCategories } = this.props;
+        const { storeService, jokeCategories, dataProvider } = this.props;
+        const socket = dataProvider.socket;
+        console.log(this.props);
         // eslint-disable-next-line
+        dataProvider.initSocket(socket);
         const categories = storeService.getJokeCategories()
             .then((data) => jokeCategories(data))
     }
@@ -33,9 +36,19 @@ class JokeCategories extends Component {
         last.scrollIntoView({block:'start', behaviour: 'smooth'})
     }
 
+    sendMessage = (data) => {
+        const { dataProvider } = this.props;
+        const socket = dataProvider.socket;
+        const request = {
+            category: data,
+            providerId: 25
+        }
+        socket.send(JSON.stringify(request));
+    }
+
     render() {
         // eslint-disable-next-line
-        const { categories, loading, activeCategory } = this.props;
+        const { categories, loading, activeCategory, dataProvider } = this.props;
 
         if (loading) {
             return <Loader />
@@ -55,9 +68,7 @@ class JokeCategories extends Component {
                         })
                     }
                 </ul>
-                <div
-                onClick={this.scroll} 
-                className='more-btn'>More-></div>
+                <div onClick={()=>{this.sendMessage(activeCategory)}} className='more-btn'>More-></div>
             </div>
         )
     }
