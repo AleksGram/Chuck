@@ -1,5 +1,10 @@
 import React from 'react';
-import { StoreServiceConsumer } from '../store-service-context/' 
+import { StoreServiceConsumer } from '../store-service-context/';
+
+import DataProvider from '../../services/dataProvider';
+
+const dataProvider = new DataProvider('wss://echo.websocket.org')
+
 
 const withStoreService = () => (Wrapped) => {
    
@@ -9,7 +14,9 @@ const withStoreService = () => (Wrapped) => {
                {
                    (storeService) => {
                         return (<Wrapped {...props}
-                                storeService = { storeService }/>)
+                                storeService = { storeService }
+                                dataProvider = {dataProvider }
+                                />)
                    }
                }
             </StoreServiceConsumer>

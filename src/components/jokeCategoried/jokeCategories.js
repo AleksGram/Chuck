@@ -14,20 +14,26 @@ class JokeCategories extends Component {
     }
 
     componentDidMount() {
-        const { storeService, jokeCategories, showWindow } = this.props;
-        if (showWindow) {
-            this.externalWindow = window.open( '', '', 'modal=true')
-        }
+        const { storeService, jokeCategories, dataProvider } = this.props;
+        const socket = dataProvider.socket;
+
+        console.log(this.props);
         // eslint-disable-next-line
+        dataProvider.initSocket(socket);
         const categories = storeService.getJokeCategories()
             .then((data) => jokeCategories(data))
     }
 
-    componentWillUnmount() {
-        if (this.externalWindow) {
-            this.externalWindow.close();
+    sendMessage = (data) => {
+        const { dataProvider } = this.props;
+        const socket = dataProvider.socket;
+        const request = {
+            category: data,
+            providerId: 25
         }
-    }
+        socket.send(JSON.stringify(request));
+    };
+
 
     scroll = () => {
         const { activeCategory } = this.props;
@@ -46,7 +52,6 @@ class JokeCategories extends Component {
         last.scrollIntoView({block:'start', behaviour: 'smooth'})
     };
     manageWindow = () => {
-        console.log('manage');
         const { windowOpen } = this.props;
         windowOpen();
     };
@@ -60,9 +65,11 @@ class JokeCategories extends Component {
             }, 5000)
         }
     };
+
     render() {
         // eslint-disable-next-line
-        const { categories, loading, activeCategory, showWindow } = this.props;
+        const { categories, loading, activeCategory, dataProvider } = this.props;
+
         if (loading) {
             return <Loader />
         }
@@ -84,6 +91,7 @@ class JokeCategories extends Component {
                 <div
                 onClick={()=>{this.manageWindow()}}
                 className='more-btn'>More-></div>
+                {/*<div onClick={()=>{this.sendMessage(activeCategory)}} className='more-btn'>More-></div>*/}
             </div>
         )
     }
