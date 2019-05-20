@@ -30,7 +30,7 @@ class JokeCategories extends Component {
         const request = {
             category: data,
             providerId: 25
-        }
+        };
         socket.send(JSON.stringify(request));
     };
 
@@ -89,8 +89,10 @@ class JokeCategories extends Component {
                     }
                 </ul>
                 <div
-                onClick={()=>{this.manageWindow()}}
-                className='more-btn'>More-></div>
+                    // onClick={()=>{this.manageWindow()}}
+                    onClick={()=>{this.sendMessage(activeCategory)}}
+                    className='more-btn'>More->
+                </div>
                 {/*<div onClick={()=>{this.sendMessage(activeCategory)}} className='more-btn'>More-></div>*/}
             </div>
         )
