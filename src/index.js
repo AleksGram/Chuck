@@ -13,7 +13,7 @@ import Header from './components/header';
 import store from './store';
 
 // const storeService = new StoreService ();
-const chackService = new ChackService()
+const chackService = new ChackService();
 
 ReactDOM.render(
    <Provider store={store}>
@@ -30,3 +30,25 @@ ReactDOM.render(
 );
 
 
+const socket = new WebSocket ("ws://echo.websocket.org");
+
+socket.onopen = (event) => {
+  console.log('Socket connected', event);
+};
+
+const handlers = {
+    al: () => alert('socket fired!')
+};
+
+
+const sBtn = document.getElementById('socket');
+sBtn.onclick = () => {
+    socket.send('al');
+};
+socket.onmessage = e => {
+    console.log('we get the message', e);
+    if (handlers[e.data]) {
+        handlers[e.data]()
+    }
+};
+// socket.send('Hello Alex');

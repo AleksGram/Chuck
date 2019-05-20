@@ -26,11 +26,23 @@ const rndCategoryJoke = (joke, category) => {
         payload: joke,
         activeCategory: category
     }
-}
+};
 
 const jokeRequest = () => {
     return {
         type: 'REQUEST_JOKE'
+    }
+};
+
+const windowOpen = () => {
+    return {
+        type: 'SHOW_WINDOW',
+    }
+};
+
+const windowClose = () => {
+    return {
+        type: 'CLOSE_WINDOW',
     }
 }
 
@@ -39,5 +51,7 @@ export  {
     randomJoke,
     jokeCategories,
     rndCategoryJoke,
-    jokeRequest
+    jokeRequest,
+    windowOpen,
+    windowClose
 };

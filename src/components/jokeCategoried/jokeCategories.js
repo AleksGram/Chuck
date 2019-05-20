@@ -8,21 +8,34 @@ import './jokeCategories.css';
 import JokeItem from '../JokeItem';
 
 class JokeCategories extends Component {
+    constructor(props){
+        super(props);
+        this.externalWindow = null;
+    }
 
     componentDidMount() {
-        const { storeService, jokeCategories } = this.props;
+        const { storeService, jokeCategories, showWindow } = this.props;
+        if (showWindow) {
+            this.externalWindow = window.open( '', '', 'modal=true')
+        }
         // eslint-disable-next-line
         const categories = storeService.getJokeCategories()
             .then((data) => jokeCategories(data))
     }
 
+    componentWillUnmount() {
+        if (this.externalWindow) {
+            this.externalWindow.close();
+        }
+    }
+
     scroll = () => {
         const { activeCategory } = this.props;
-       
+
         let last = null;
         if (activeCategory === '') {
             last = document.querySelector('li.category:nth-child(7)');
-        
+
             if(last.getBoundingClientRect().top < 328) {
                 last = last.nextElementSibling;
             }
@@ -31,17 +44,30 @@ class JokeCategories extends Component {
         }
 
         last.scrollIntoView({block:'start', behaviour: 'smooth'})
-    }
-
+    };
+    manageWindow = () => {
+        console.log('manage');
+        const { windowOpen } = this.props;
+        windowOpen();
+    };
+    renderWindow = () => {
+        const {showWindow, windowClose} = this.props;
+        if(showWindow) {
+            this.externalWindow = window.open('', '', 'modal=yes');
+            setTimeout(() => {
+                this.externalWindow.close();
+                windowClose();
+            }, 5000)
+        }
+    };
     render() {
         // eslint-disable-next-line
-        const { categories, loading, activeCategory } = this.props;
-
+        const { categories, loading, activeCategory, showWindow } = this.props;
         if (loading) {
             return <Loader />
         }
+        this.renderWindow();
 
-        
         return (
             <div className='categoryContainer' >
                 <ul className="list-category">
@@ -56,20 +82,21 @@ class JokeCategories extends Component {
                     }
                 </ul>
                 <div
-                onClick={this.scroll} 
+                onClick={()=>{this.manageWindow()}}
                 className='more-btn'>More-></div>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ categories, loading, activeCategory }) => {
+const mapStateToProps = ({ categories, loading, activeCategory, showWindow }) => {
     return {
         categories,
         loading,
-        activeCategory
+        activeCategory,
+        showWindow
     }
-}
+};
 
 export default compose(
     withStoreService(),

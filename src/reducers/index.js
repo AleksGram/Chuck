@@ -4,7 +4,8 @@ const initialState = {
     currentJoke: '',
     categories: [],
     categoryJoke: '',
-    activeCategory: ''
+    activeCategory: '',
+    showWindow: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +34,17 @@ const reducer = (state = initialState, action) => {
             ...state,
             loading: true
         }
+        case 'SHOW_WINDOW':
+            return {
+                ...state,
+                showWindow: true
+            };
+
+        case 'CLOSE_WINDOW':
+            return {
+                ...state,
+                showWindow: false
+            };
         default:
             return state;
     }

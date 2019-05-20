@@ -7,6 +7,7 @@ const Header = () => {
     return (
         <div className="header">
             <img src={icon} alt="icon"></img>
+            <button id='socket'>Socket</button>
         </div>
     )
 }
